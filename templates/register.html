@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="/static/css/tags.css" />
+{% endblock %}
+
+
+
 {% block content %}
 
 <div class="jumbotron">
@@ -14,20 +20,29 @@
 
 		  <div class="form-group">
 			<label for="exampleInputPassword1">Password</label>
-			<input type="password" name="password" class="form-control" placeholder="Password">
+			<input type="input" name="password" class="form-control" placeholder="Password">
 		  </div>
 		  <div class="form-group">
 			<label for="exampleInputFirstName">First Name</label>
-			<input type="firstName" name="firstName" class="form-control" placeholder="First Name">
+			<input type="input" name="firstName" class="form-control" placeholder="First Name">
 		  </div>
 		  <div class="form-group">
 			<label for="exampleInputLastName">Last Name</label>
-			<input type="lastName" name="lastName" class="form-control" placeholder="Last Name">
+			<input type="input" name="lastName" class="form-control" placeholder="Last Name">
 		  </div>
 		  <div class="form-group">
 			<label for="exampleInputBio">Bio</label>
-			<input type="bio" name="bio" class="form-control" placeholder="Tell us a bit about yourself!">
+			<input type="input" name="bio" class="form-control" placeholder="Tell us a bit about yourself!">
 		  </div>
+		  <div class="form-group">
+			<label for="input">Add some tags that describe you, (Limit 5)</label>
+			<input id="tag-gen" class="form-control" type="text" placeholder="Add tags that describe you!"/>
+			<div id="tags" class="row tags text-center" ></div>
+		  </div>
+		  
+		    
+		  
+		  
 
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
@@ -35,5 +50,8 @@
     
 </div>
 
-
 {% endblock %}
+
+{% block scripts %} 
+<script src="/static/js/tags.js"></script>
+{% endblock%} 

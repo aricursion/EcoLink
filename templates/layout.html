@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<title>Enviro</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	{% block styles %}{% endblock %}
 </head>
 
 <body>
@@ -53,9 +52,11 @@
         </footer>
     </div>
 
-    <script src="/static/scripts/jquery-1.10.2.js"></script>
-    <script src="/static/scripts/bootstrap.js"></script>
-    <script src="/static/scripts/respond.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+	
+    
     {% block scripts %}{% endblock %}
 
 </body>
