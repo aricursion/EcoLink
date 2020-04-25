@@ -3,8 +3,10 @@ import pyrebase
 import ast 
 from getpass import getpass
 import json
+import time
 
 from accountHandling import createAccount, loginAccount
+from posting import *
 
 with open("db_creds.json") as f:
 	firebaseConfig = json.load(f)
@@ -58,6 +60,49 @@ def actionLogin():
     resp.set_cookie("uid", uid)
     return resp
 
+@app.route("/api/createPost", methods=["POST"])
+def actionPost():
+    data = request.form
+    uid = request.cookies.get("uid")
+    desc = data["description"]
+    img = data["image"]
+    loc = data["location"]
+    ts = int(time.time())
+    return createPost(db, uid, desc, img, loc, ts)
+
+@app.route("/api/deletePost", methods=["POST"])
+def actionDelete():
+    data = request.form
+    uid = request.cookies.get("uid")
+    postid = data["postid"]
+    if(not deletePost(db, uid, postid)):
+        return "fail"
+    return "success"
+
+@app.route("/api/likePost", methods=["POST"])
+def actionLike():
+    data = request.form
+    uid = request.cookies.get("uid")
+    postid = data["postid"]
+    if(not likePost(db, uid, postid)):
+        return "fail"
+    return "success"
+
+@app.route("/api/attendPost", methods=["POST"])
+def actionAttend():
+    data = request.form
+    uid = request.cookies.get("uid")
+    postid = data["postid"]
+    if(not confirmAttendance(db, uid, postid)):
+        return "fail"
+    return "success"
+
+@app.route("/api/followingPosts", methods=["GET"])
+def getFollowingPosts():
+    data = request.form
+    uid = request.cookies.get("uid")
+    ans = fetchFollowingPost(db, uid)
+    return json.dumps(ans)
 
 @app.route("/get")
 def getcookie():
