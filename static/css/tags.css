@@ -47,7 +47,6 @@
     }
 
     #tags{
-	  background-color:pink;
 	  min-height:36px;
 	  transition: height 0.3s;
 	  margin-top:1em;
