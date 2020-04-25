@@ -12,49 +12,65 @@ auth = firebase.auth()
 """
 
 def likePost(db, uid, post):
-    likes = db.child("posts").child(post).child("likes").get().val()
-    likes.append(uid)
+    try:
+        likes = db.child("posts").child(post).child("likes").get().val()
+        likes.append(uid)
 
-    db.child("posts").child(post).update({"likes" : likes})
+        db.child("posts").child(post).update({"likes" : likes})
+        return True
+    except:
+        return False
 
 def confirmAttendance(db, uid, post):
-    attends = db.child("posts").child(post).child("attendees").get().val()
-    attends.append(uid)
+    try:
+        attends = db.child("posts").child(post).child("attendees").get().val()
+        attends.append(uid)
 
-    db.child("posts").child(post).update({"attendees" : attends})
+        db.child("posts").child(post).update({"attendees" : attends})
+        return True
+    except:
+        return False
 
 def createPost(db, uid, desc, img, loc, ts):
-    user = "{0} {1}".format(
-        db.child("users").child(uid).child("firstname").get().val(),
-        db.child("users").child(uid).child("lastname").get().val()
-    )
+    try:
+        user = "{0} {1}".format(
+            db.child("users").child(uid).child("firstname").get().val(),
+            db.child("users").child(uid).child("lastname").get().val()
+        )
 
-    data = {
-        "attendees" : [uid], 
-        "author" : uid, 
-        "description" : desc, 
-        "image" : img, 
-        "likes" : [uid], 
-        "location" : loc, 
-        "name" :user, 
-        "timestamp" : ts
-    }
-    
-    name = db.child("posts").push(data)["name"]
-    pids = db.child("users").child(uid).child("postids").get().val()
-    pids.append(name)
-    db.child("users").child(uid).update({"postids" : pids})
+        data = {
+            "attendees" : [uid], 
+            "author" : uid, 
+            "description" : desc, 
+            "image" : img, 
+            "likes" : [uid], 
+            "location" : loc, 
+            "name" :user, 
+            "timestamp" : ts
+        }
+        
+        name = db.child("posts").push(data)["name"]
+        pids = db.child("users").child(uid).child("postids").get().val()
+        pids.append(name)
+        db.child("users").child(uid).update({"postids" : pids})
 
-    return name
+        return name
+    except:
+        return False
 
-def deletePost(db, post):
-    author = db.child("posts").child(post).child("author").get().val()
-    arr = db.child("users").child(author).child("postids").get().val()
-    arr.remove(post)
-    db.child("users").child(author).update({"postids" : arr})
+def deletePost(db, uid, post):
+    try:
+        author = db.child("posts").child(post).child("author").get().val()
+        if (author != uid):
+            return False
+        arr = db.child("users").child(author).child("postids").get().val()
+        arr.remove(post)
+        db.child("users").child(author).update({"postids" : arr})
 
-    db.child("posts").child(post).remove()
-    return post
+        db.child("posts").child(post).remove()
+        return True
+    except:
+        return False
 
 def fetchAllPosts(db):
     posts = db.child("posts").get()
@@ -64,6 +80,7 @@ def fetchAllPosts(db):
     return ans
 
 def fetchFollowingPost(db, user):
+    # TODO: sort
     following = db.child("users").child(user).child("following").get().val()
     posts = fetchAllPosts(db)
     ans = {}
