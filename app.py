@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 import pyrebase
 
 from getpass import getpass
@@ -38,12 +38,25 @@ def actionRegister():
 def login():
     return render_template("/login.html")
 
+def setCookie(key, value):
+    resp = make_response("Setting cookie")
+    resp.set_cookie(key, value)
+    return resp
+
 @app.route("/api/login", methods=["POST"])
 def actionLogin():
     data = request.form
     email = data["email"]
     password = data["password"]
-    loginAccount(db, auth, email, password)
-    return "penis2"
+    uid = loginAccount(db, auth, email, password)
+    
+    resp = make_response("Setting cookie")
+    resp.set_cookie("uid", uid)
+    return resp
+
+
+@app.route("/get")
+def getcookie():
+    return ""
 
 app.run()
