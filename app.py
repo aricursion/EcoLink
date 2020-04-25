@@ -23,7 +23,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("/index.html")
+    if type(request.cookies.get('uid')) == "NoneType":
+        return render_template("/landingpage.html")	
+    else:
+        return render_template("/index.html")	
 
 @app.route("/upload")
 def upload():
@@ -31,7 +34,6 @@ def upload():
 
 @app.route("/api/upload/", methods=["POST"])
 def actionUpload():
-
     picture = request.files['file']
     temp = tempfile.NamedTemporaryFile(delete=False) 
     picture.save(temp.name)
@@ -40,8 +42,7 @@ def actionUpload():
     print("UPLOADING TO FIREBASE: " + temp.name)
     os.remove(temp.name) 
     print("REMOVING FROM LOCAL SYSTEM: " + temp.name)
-    return "Success."
-    
+    index();
 @app.route("/register")
 def register():
     return render_template("/register.html")
@@ -60,7 +61,7 @@ def actionRegister():
     skills = skills[:-1].split(",")
     print(skills)
     createAccount(db, auth, email, password, firstName, lastName, bio, skills)
-    return "penis"
+    index();
 
 @app.route("/login")
 def login():
@@ -78,7 +79,7 @@ def actionLogin():
     password = data["password"]
     uid = loginAccount(db, auth, email, password)
 
-    resp = make_response(render_template("index.html"))
+    resp = make_response(render_template("redirect.html"))
     resp.set_cookie("uid", uid)
     return resp
 

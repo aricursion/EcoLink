@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block styles %}
+{% block css %}
 <link rel="stylesheet" type="text/css" href="/static/css/tags.css" />
 {% endblock %}
 
@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div class="jumbotron">
+
     <h1>Register</h1>
     <p class="lead">
 		<form action="{{ url_for("actionRegister") }}" method="post">
@@ -48,7 +48,7 @@
 		</form>
 	</p>
     
-</div>
+
 
 {% endblock %}
 

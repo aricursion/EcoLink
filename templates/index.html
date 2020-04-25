@@ -1,11 +1,66 @@
 {% extends "layout.html" %}
 
+{% block css %}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+<style>
+p,a{
+font-family: 'Josefin Sans', sans-serif;
+color:white;
+}
+p{
+font-size:32px;
+}
+.custom{
+height:30vh;
+margin:0;
+padding:0;
+background-image:url('/static/logo.png');
+background-size: cover;
+background-position: center;
+}
+a:hover{
+font-weight:850;
+color:white;
+background-color:#80A07D;
+padding:10px;
+border-radius:10px;
+
+}
+a:link, a{
+font-weight:800;
+font-size:28px;
+transition:0.2s ease-in-out;
+text-align:center;
+color:white;
+text-decoration:underline;
+}
+
+
+</style>
+{% endblock %}
+
+
 {% block content %}
 <html>
 	<head>
 	</head>
 	<body>
-		test
+		<div class="container">
+			<div class="custom">
+	  			&nbsp;
+			</div>
+			<br>
+			<p>a social network for young environmental activists looking to collaborate on projects and share ideas as to how to promote sustainability in their communities</p>
+			<br>
+			<div class="row text-center">
+				<div class="col">
+				  <a href="{{ url_for("login") }}">Login</a>
+				</div>
+				<div class="col">
+				  <a href="{{ url_for("register") }}">Register</a>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>
 
