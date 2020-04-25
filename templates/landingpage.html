@@ -1,0 +1,57 @@
+{% extends "layout.html" %} {% block styles %}
+<link
+	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+	rel="stylesheet"
+/>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+	rel="stylesheet"
+/>
+
+<style>
+	.title {
+		font-family: "Bungee";
+		text-align: center;
+		background-color: green;
+		color: white;
+		margin: 0 -9999rem;
+	}
+	.trending {
+		margin-top: 3%;
+		color: white;
+		font-family: "Bungee";
+	}
+	.trending-logo {
+        text-align: center;
+        margin-top: 5%;
+	}
+</style>
+{% endblock %} {% block content %}
+<html>
+	<head> </head>
+	<body>
+		<h1 class="title">ECOLINK</h1>
+		<div class="container">
+			<div class="row">
+				<div class="col trending-column">
+					<img
+						class="treding-logo"
+						src="../static/plant.png"
+						height="100%"
+						width="50%"
+					/>
+					<h2 class="trending">Trending</h2>
+				</div>
+				<div class="col"></div>
+				<div class="col">
+					<div class="panel panel-default">
+						<div class="panel-heading">Your Profile</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% endblock %}
