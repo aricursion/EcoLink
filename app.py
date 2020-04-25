@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import pyrebase
+import ast 
 import os 
 import tempfile
 from getpass import getpass
@@ -54,7 +55,11 @@ def actionRegister():
     firstName = data["firstName"]
     lastName = data["lastName"]
     bio = data["bio"]
-    createAccount(db, auth, email, password, firstName, lastName, bio, ["NA"])
+    skills= data["skills"]
+    print(skills[:-1])
+    skills = skills[:-1].split(",")
+    print(skills)
+    createAccount(db, auth, email, password, firstName, lastName, bio, skills)
     return "penis"
 
 @app.route("/login")
