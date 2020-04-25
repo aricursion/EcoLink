@@ -29,6 +29,7 @@ def createAccount(db, auth, email, password, firstname, lastname, bio, skills):
 		"bio": bio,
 		"postids": [0],  # array of post ids
 		"skills": skills,
+		"following": ["{}".format(uid)]
 	}
 	db.child("users").child(uid).set(data)
 
