@@ -11,14 +11,14 @@ db = firebase.database()
 auth = firebase.auth()
 
 
-def createAccount():
-	email = input("email: ")
-	password = getpass("pass: ")
-	firstname = input("first: ")
-	lastname = input("last: ")
-	bio = input("bio: ")
-	skills = [0]
-	posts = [0]
+def createAccount(email, password, firstname, lastname, bio, skills, postids):
+	# email = input("email: ")
+	# password = getpass("pass: ")
+	# firstname = input("first: ")
+	# lastname = input("last: ")
+	# bio = input("bio: ")
+	# skills = [0]
+	# postids = [0]
 	user = auth.create_user_with_email_and_password(email, password)
 	uid = user["localId"]
 	data = {
@@ -32,4 +32,4 @@ def createAccount():
 	db.child("users").child(uid).set(data)
 
 
-createAccount()
+createAccount("test@test.com", "TESTTEST", "test", "test", "test", [0], [0])
