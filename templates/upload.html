@@ -1,6 +1,35 @@
-<html>
-<head>
-</head>
-<body>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block styles %}
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Register</h1>
+    <p class="lead">
+		<form action="{{ url_for("actionUpload") }}" method="post" enctype="multipart/form-data">
+		  <div class="form-group">
+			  <div class="custom-file">
+				<input type="file" class="custom-file-input" id="file" name="file">
+				<label class="custom-file-label" for="customFile">Choose file</label>
+			  </div>
+
+		  <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</p>
+</div>
+
+{% endblock %}
+
+{% block scripts %} 
+			<script>
+			$(".custom-file-input").on("change", function() {
+			  var fileName = $(this).val().split("\\").pop();
+			  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			});
+			</script>
+{% endblock%} 

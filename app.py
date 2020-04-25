@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import pyrebase
-
+import os 
+import tempfile
 from getpass import getpass
 import json
-
+from werkzeug.utils import secure_filename
+#pip install Werkzeug
 from accountHandling import createAccount, loginAccount
+
 
 with open("db_creds.json") as f:
 	firebaseConfig = json.load(f)
 
 firebase = pyrebase.initialize_app(firebaseConfig)
+
 db = firebase.database()
 auth = firebase.auth()
+storage = firebase.storage()
 
 app = Flask(__name__)
 
@@ -19,12 +24,30 @@ app = Flask(__name__)
 def index():
     return render_template("/index.html")
 
+@app.route("/upload")
+def upload():
+    return render_template("/upload.html")
+
+@app.route("/api/upload/", methods=["POST"])
+def actionUpload():
+
+    picture = request.files['file']
+    temp = tempfile.NamedTemporaryFile(delete=False) 
+    picture.save(temp.name)
+    print("SAVING: " + temp.name)
+    storage.child(temp.name.replace("tmp", "images")).put(temp.name)
+    print("UPLOADING TO FIREBASE: " + temp.name)
+    os.remove(temp.name) 
+    print("REMOVING FROM LOCAL SYSTEM: " + temp.name)
+    return "Success."
+    
 @app.route("/register")
 def register():
     return render_template("/register.html")
 
 @app.route('/api/register', methods=["POST"])
 def actionRegister():
+    
     data = request.form
     email = data["email"]
     password = data["password"]
