@@ -3,9 +3,9 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Login</h1>
+    <h1>Register</h1>
     <p class="lead">
-		<form action="{{ url_for("actionLogin") }}" method="post">
+		<form action="{{ url_for("actionRegister") }}" method="post">
 		  <div class="form-group">
 			<label for="exampleInputEmail1">Email address</label>
 			<input type="email" name="email" class="form-control" placeholder="Enter email">
@@ -16,6 +16,19 @@
 			<label for="exampleInputPassword1">Password</label>
 			<input type="password" name="password" class="form-control" placeholder="Password">
 		  </div>
+		  <div class="form-group">
+			<label for="exampleInputFirstName">First Name</label>
+			<input type="firstName" name="firstName" class="form-control" placeholder="First Name">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputLastName">Last Name</label>
+			<input type="lastName" name="lastName" class="form-control" placeholder="Last Name">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputBio">Bio</label>
+			<input type="bio" name="bio" class="form-control" placeholder="Tell us a bit about yourself!">
+		  </div>
+
 		  <button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</p>

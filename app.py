@@ -4,7 +4,7 @@ import pyrebase
 from getpass import getpass
 import json
 
-from login import createAccount
+from accountHandling import createAccount, loginAccount
 
 with open("db_creds.json") as f:
 	firebaseConfig = json.load(f)
@@ -19,16 +19,31 @@ app = Flask(__name__)
 def index():
     return render_template("/index.html")
 
+@app.route("/register")
+def register():
+    return render_template("/register.html")
+
+@app.route('/api/register', methods=["POST"])
+def actionRegister():
+    data = request.form
+    email = data["email"]
+    password = data["password"]
+    firstName = data["firstName"]
+    lastName = data["lastName"]
+    bio = data["bio"]
+    createAccount(db, auth, email, password, firstName, lastName, bio, ["NA"])
+    return "penis"
+
 @app.route("/login")
 def login():
     return render_template("/login.html")
 
-@app.route('/api/login', methods=["POST"])
+@app.route("/api/login", methods=["POST"])
 def actionLogin():
     data = request.form
     email = data["email"]
     password = data["password"]
-    createAccount(db, auth, email, password, "first", "last", "bio", ["NA"])
-    return "penis"
+    loginAccount(db, auth, email, password)
+    return "penis2"
 
 app.run()

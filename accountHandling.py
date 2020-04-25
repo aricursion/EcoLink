@@ -34,3 +34,9 @@ def createAccount(db, auth, email, password, firstname, lastname, bio, skills):
 
 
 # createAccount("test@test.com", "TESTTEST", "test", "test", "test", ["NA"])
+
+def loginAccount(db, auth, email, password):
+	signin = auth.sign_in_with_email_and_password(email, password)
+	print(auth.get_account_info(signin["idToken"]))
+	print("hoorary!")
+
