@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import pyrebase
-
+import ast 
 from getpass import getpass
 import json
 
@@ -32,7 +32,9 @@ def actionRegister():
     lastName = data["lastName"]
     bio = data["bio"]
     skills= data["skills"]
-    print("skills: ", skills)
+    print(skills[:-1])
+    skills = skills[:-1].split(",")
+    print(skills)
     createAccount(db, auth, email, password, firstName, lastName, bio, skills)
     return "penis"
 
