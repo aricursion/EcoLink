@@ -1,0 +1,7 @@
+db_creds.json
+*.DS_Store
+test.py
+__pycache__/
+*.pyc
+.vscode/
+nohup.out
