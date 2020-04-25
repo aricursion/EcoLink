@@ -3,15 +3,15 @@ import pyrebase
 from getpass import getpass
 import json
 
-with open("db_creds.json") as f:
-	firebaseConfig = json.load(f)
+# with open("db_creds.json") as f:
+# 	firebaseConfig = json.load(f)
 
-firebase = pyrebase.initialize_app(firebaseConfig)
-db = firebase.database()
-auth = firebase.auth()
+# firebase = pyrebase.initialize_app(firebaseConfig)
+# db = firebase.database()
+# auth = firebase.auth()
 
 
-def createAccount(email, password, firstname, lastname, bio, skills, postids):
+def createAccount(db, auth, email, password, firstname, lastname, bio, skills):
 	# email = input("email: ")
 	# password = getpass("pass: ")
 	# firstname = input("first: ")
@@ -23,13 +23,14 @@ def createAccount(email, password, firstname, lastname, bio, skills, postids):
 	uid = user["localId"]
 	data = {
 		"uid": uid,
+		"email": email,
 		"firstname": firstname,
 		"lastname": lastname,
 		"bio": bio,
-		"posts": posts,  # array of post ids
+		"postids": [0],  # array of post ids
 		"skills": skills,
 	}
 	db.child("users").child(uid).set(data)
 
 
-createAccount("test@test.com", "TESTTEST", "test", "test", "test", [0], [0])
+# createAccount("test@test.com", "TESTTEST", "test", "test", "test", ["NA"])
