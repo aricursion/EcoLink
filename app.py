@@ -35,7 +35,7 @@ def actionUpload():
     temp = tempfile.NamedTemporaryFile(delete=False) 
     picture.save(temp.name)
     print("SAVING: " + temp.name)
-    storage.child(temp.name.replace("tmp", "images")).put(temp.name)
+    storage.child(temp.name.replace("tmp", "images")).put(temp.name, request.cookies.get('uid'))
     print("UPLOADING TO FIREBASE: " + temp.name)
     os.remove(temp.name) 
     print("REMOVING FROM LOCAL SYSTEM: " + temp.name)
