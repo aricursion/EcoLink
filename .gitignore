@@ -1,4 +1,7 @@
 db_creds.json
- __pycache__/
- .vscode/
- *.pyc
+*.DS_Store
+test.py
+__pycache__/
+*.pyc
+.vscode/
+nohup.out
