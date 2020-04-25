@@ -10,9 +10,9 @@
 />
 
 <style>
-    body {
-        overflow-x: hidden;
-    }
+	body {
+		overflow-x: hidden;
+	}
 	.title {
 		font-family: "Bungee";
 		text-align: center;
@@ -26,9 +26,27 @@
 		font-family: "Bungee";
 	}
 	.trending-logo {
-        text-align: center;
-        margin-top: 5%;
+		text-align: center;
+		margin-top: 5%;
 	}
+	.subcontainer {
+		margin-top: 4%;
+		text-align: center;
+	}
+	.feed {
+		color: white;
+		font-family: "Bungee";
+	}
+	.card-link {
+		color: #b7deb2;
+	}
+	.card-link:hover {
+		color: purple;
+    }
+    .you {
+        color: white;
+		font-family: "Bungee";
+    }
 </style>
 {% endblock %} {% block content %}
 <html>
@@ -36,20 +54,37 @@
 	<body>
 		<h1 class="title">ECOLINK</h1>
 		<div class="container">
-			<div class="row">
-				<div class="col trending-column">
-					<img
-						class="treding-logo"
-						src="../static/plant.png"
-						height="100%"
-						width="50%"
-					/>
-					<h2 class="trending">Trending</h2>
-				</div>
-				<div class="col"></div>
-				<div class="col">
-					<div class="panel panel-default">
-						<div class="panel-heading">Your Profile</div>
+			<div class="subcontainer">
+				<div class="row">
+					<div class="col-sm">
+						<img
+							class="trending-logo"
+							src="../static/plant.png"
+							height="auto"
+							width="50%"
+						/>
+						<h2 class="trending">Trending</h2>
+					</div>
+					<div class="col-sm">
+						<h2 class="feed">Feed</h2>
+					</div>
+					<div class="col-sm">
+						<h2 class="you">Profile</h2>
+						<div class="card">
+							<div class="card-body">
+								<img
+									src="https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-518740741.jpg"
+								/>
+								<h6 class="card-subtitle mb-2 text-muted">
+									firstname lastname
+								</h6>
+								<p class="card-text">
+									BIO BIO BIO
+								</p>
+								<a href="#!" class="card-link">Profile Page</a>
+								<a href="#!" class="card-link">Followers</a>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
