@@ -1,12 +1,10 @@
 from flask import Flask, render_template, request, jsonify, make_response
 import pyrebase
-import ast 
-import os 
+import ast
+import os
 import tempfile
 from getpass import getpass
 import json
-from werkzeug.utils import secure_filename
-#pip install Werkzeug
 from accountHandling import createAccount, loginAccount
 
 
@@ -23,10 +21,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    if type(request.cookies.get('uid')) == "NoneType":
-        return render_template("/landingpage.html")	
-    else:
-        return render_template("/index.html")	
+	if request.cookies.get('uid') != None:
+		print(1)
+		return render_template("/landingpage.html")
+	else:
+		print(0)
+		return render_template("/index.html")
+	return ""
 
 @app.route("/upload")
 def upload():
@@ -35,12 +36,12 @@ def upload():
 @app.route("/api/upload/", methods=["POST"])
 def actionUpload():
     picture = request.files['file']
-    temp = tempfile.NamedTemporaryFile(delete=False) 
+    temp = tempfile.NamedTemporaryFile(delete=False)
     picture.save(temp.name)
     print("SAVING: " + temp.name)
     storage.child(temp.name.replace("tmp", "images")).put(temp.name, request.cookies.get('uid'))
     print("UPLOADING TO FIREBASE: " + temp.name)
-    os.remove(temp.name) 
+    os.remove(temp.name)
     print("REMOVING FROM LOCAL SYSTEM: " + temp.name)
     index();
 @app.route("/register")
@@ -49,7 +50,7 @@ def register():
 
 @app.route('/api/register', methods=["POST"])
 def actionRegister():
-    
+
     data = request.form
     email = data["email"]
     password = data["password"]
