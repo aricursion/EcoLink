@@ -49,8 +49,8 @@ def actionLogin():
     email = data["email"]
     password = data["password"]
     uid = loginAccount(db, auth, email, password)
-    
-    resp = make_response("Setting cookie")
+
+    resp = make_response(render_template("index.html"))
     resp.set_cookie("uid", uid)
     return resp
 
