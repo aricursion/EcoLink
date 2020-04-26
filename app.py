@@ -122,6 +122,11 @@ def getFollowingPosts():
 	ans = fetchFollowingPost(db, uid)
 	return json.dumps(ans)
 
+@app.route("/api/fetchPosts", methods=["GET"])
+def getPosts():
+	ans = fetchAllPosts(db)
+	return json.dumps(ans)
+
 @app.route("/logout")
 def logout():
 	resp = make_response(redirect("/"))
