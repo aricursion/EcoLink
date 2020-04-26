@@ -1,9 +1,39 @@
 {% extends "layout.html" %}
 
+{% block styles %}
+
+<style>
+
+	.title {
+			color:#b7deb2;
+			text-shadow:1px solid black;
+			font-family: "Bungee";
+			-webkit-text-stroke: 1px lightslategrey;
+			-webkit-text-fill-color:#b7deb2;
+			padding:10px;
+		}
+	form{
+		background-color:white;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 1px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 1px -1px rgba(0, 0, 0, 0.2);
+		border-radius:5px;
+		padding:10px;
+	}
+	.z-depth-5 {
+		margin-top:10vh;
+		box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+		padding:5px;
+		border-radius:5px;
+		background-color:whitesmoke;
+	}
+	</style>
+
+{% endblock %}
+
 {% block content %}
 
-<div class="jumbotron">
-    <h1>Login</h1>
+<div class="z-depth-5">
+
+	<center><h1 class="title">Login</h1></center>
     <p class="lead">
 		<form action="{{ url_for("actionLogin") }}" method="post">
 		  <div class="form-group">
