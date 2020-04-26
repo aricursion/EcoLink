@@ -72,7 +72,7 @@ python-dateutil==2.7.3
 python-jwt==2.0.1
 pytz==2018.5
 PyYAML==3.13
-requests==2.11.1
+requests==2.20.0
 requests-toolbelt==0.7.0
 ROPGadget==6.3
 rsa==4.0
