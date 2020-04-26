@@ -20,12 +20,14 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 	uids = [i.val()["uid"] for i in db.child("users").get().each()]
-	uid = request.cookies.get('uid')
-	if uid in uids:
-		print(1)
-		name = db.child("users").child(uid).child("firstname").get().val() + " " + db.child("users").child(uid).child("lastname").get().val()
-		bio = db.child("users").child(uid).child("bio").get().val()
-		return render_template("/landingpage.html",name = name, bio = bio)
+	if request.cookies.get('uid') in uids:
+		uid = request.cookies.get('uid')
+		data = db.child("users").child(uid).get()
+		bio = data.val()["bio"]
+		name = data.val()["firstname"] + " " + data.val()["lastname"]
+		avatar = "/static/avatar.png"
+		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar)
+
 	else:
 		print(0)
 		return render_template("/index.html")
@@ -48,11 +50,15 @@ def actionRegister():
 	skills = skills[:-1].split(",")
 	print(skills)
 	createAccount(db, auth, email, password, firstName, lastName, bio, skills)
-	return "penis"
+	return redirect("/")
 
 @app.route("/login")
 def login():
 	return render_template("/login.html")
+
+@app.route("/post")
+def post():
+	return render_template("/post.html")
 
 def setCookie(key, value):
 	resp = make_response("Setting cookie")
@@ -74,12 +80,13 @@ def actionLogin():
 def actionPost():
 	data = request.form
 	uid = request.cookies.get("uid")
-	title = data["title"]
+	title = data["postTitle"]
 	desc = data["description"]
 	img = data["image"]
 	loc = data["location"]
 	ts = int(time.time())
-	return createPost(db, uid, title, desc, img, loc, ts)
+	createPost(db, uid, title, desc, img, loc, ts)
+	return make_response(redirect("/"))
 
 @app.route("/api/deletePost", methods=["POST"])
 def actionDelete():
@@ -114,6 +121,12 @@ def getFollowingPosts():
 	uid = request.cookies.get("uid")
 	ans = fetchFollowingPost(db, uid)
 	return json.dumps(ans)
+
+@app.route("/logout")
+def logout():
+	resp = make_response(redirect("/"))
+	resp.set_cookie('uid', '', expires=0)
+	return resp
 
 @app.route("/get")
 def getcookie():
