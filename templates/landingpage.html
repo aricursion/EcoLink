@@ -17,15 +17,12 @@
 	.title {
 		font-family: "Bungee";
 		text-align: center;
-		background-color: green;
+		background-color: rgba(0,255,0,0.3);
 		color: white;
 		margin: 0 -9999rem;
+		-webkit-text-stroke: 1px lightslategrey;
 	}
-	.trending {
-		margin-top: 3%;
-		color: white;
-		font-family: "Bungee";
-	}
+	
 	.trending-logo {
 		text-align: center;
 		margin-top: 5%;
@@ -34,20 +31,27 @@
 		margin-top: 4%;
 		text-align: center;
 	}
-	.feed {
-		color: white;
-		font-family: "Bungee";
-	}
 	.card-link {
 		color: #b7deb2;
 	}
 	.card-link:hover {
 		color: purple;
     }
-    .you {
-        color: white;
+    .you, .trending, .feed {
+		
+		color:#b7deb2;
+		text-shadow:1px solid black;
 		font-family: "Bungee";
-    }
+		-webkit-text-stroke: 1px lightslategrey;
+    	-webkit-text-fill-color:#b7deb2;
+	}
+	.z-depth-5 {
+		
+		box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+		padding:5px;
+		
+		background-color:whitesmoke;
+	}
 </style>
 {% endblock %} {% block content %}
 <html>
@@ -111,7 +115,7 @@
 		<div class="container">
 			<div class="subcontainer">
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-sm-3 z-depth-5">
 						<!-- <img
 							class="trending-logo"
 							src="../static/plant.png"
@@ -120,20 +124,21 @@
 						/> -->
 						<h2 class="trending">Trending</h2>
 					</div>
-					<div class="col-sm-6" id = "feed_main">
+					<div class="col-sm-6 z-depth-5" id = "feed_main">
                         <h2 class="feed">Feed</h2>
                         
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-3 z-depth-5">
 						<h2 class="you">Profile</h2>
 						<div class="card">
 							<div class="card-body">
 								<img
                                     src="{{avatar}}"
                                     width="80%"
-                                    height="auto"
+									height="auto"
+									style="border-radius:50%;"
 								/>
-								<h6 class="card-subtitle mb-4 text-muted">
+								<h6 class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
 									{{ name }}
 								</h6>
 								<p class="card-text">
