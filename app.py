@@ -49,7 +49,7 @@ def actionRegister():
 	skills = skills[:-1].split(",")
 	print(skills)
 	createAccount(db, auth, email, password, firstName, lastName, bio, skills)
-	return "penis"
+	return redirect("/")
 
 @app.route("/login")
 def login():
