@@ -145,5 +145,5 @@ def getcookie():
 def maps():
 	return render_template("/map.html",location = request.args.get("location"))
 
-
-app.run()
+if __name__ == "__main__": 
+	app.run()
