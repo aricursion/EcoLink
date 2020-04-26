@@ -1,3 +1,4 @@
+<html style="background-color:white;">
 {% extends "layout.html" %} {% block styles %}
 <link
 	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
@@ -16,7 +17,7 @@
     }
 	
 	nav{
-		background-color:rgba(0,255,0,0.3);
+		background-color:#b7deb2;
 		height:150px;
 	}
 
@@ -27,7 +28,7 @@
 		
 	}
 
-	a, h2 .header-text {
+	.header-text > a {
 		font-family: "Josefin Sans";
 		text-align: center;
 		color: white;
@@ -50,7 +51,7 @@
     }
     .you, .trending, .feed {
 		color:#b7deb2;
-		text-shadow:1px solid black;
+		text-shadow:1px solid #b7deb2;
 		font-family: "Josefin Sans", sans-serif;;
 		-webkit-text-stroke: 1px lightslategrey;
     	-webkit-text-fill-color:#b7deb2;
@@ -91,14 +92,17 @@
         -ms-flex: 0 0 20%;
         flex: 0 0 20%;
 		max-width: 20%;
-		margin-top:100px;
+		
     }
 
 	a {
 		font-family: "Josefin Sans", sans-serif;
 		color: white;
 		text-decoration: underline;
-		font-size:32px;
+		transition: 0.4s; 
+	}
+	a:hover{
+		color:limegreen;
 	}
 	nav{
 		width:100vw;
@@ -223,19 +227,19 @@
 		<nav>
 			<div class="row">
 				<div class="col-sm-2dot4" style="text-align:center;">
-					<h2 class="header-text"><a href="/profile">Login</a></h2>
+					<h2 class="header-text"><a href="/profile">login</a></h2>
 				</div>
 				<div class="col-sm-2dot4" style="text-align:center;">
-					<h2 class="header-text"><a href="/post">Post</a></h2>
+					<h2 class="header-text"><a href="/post">post</a></h2>
 				</div>
-				<div class="col-sm-2dot4">
+				<div class="col-sm-2dot4" style="margin-top:-3px;">
 					<h1 class="title">ECOLINK</h1>
 				</div>
 				<div class="col-sm-2dot4" style="text-align:center;">
-					<h2 class="header-text"><a href="/profile">Profile</a></h2>
+					<h2 class="header-text"><a href="/profile">profile</a></h2>
 				</div>
 				<div class="col-sm-2dot4" style="text-align:center;">
-					<h2 class="header-text"><a href="/logout">Logout</a></h2>
+					<h2 class="header-text"><a href="/logout">logout</a></h2>
 				</div>
 			</div>
 		</nav>
@@ -250,14 +254,14 @@
 							height="auto"
 							width="50%"
 						/> -->
-						<h2 class="trending">Trending</h2>
+						
 					</div>
 					<div class="col-sm-6" id = "feed_main">
-                        <h2 class="feed">Feed</h2>
+                        
                         
 					</div>
 					<div class="col-sm-3">
-						<h2 class="you">Profile</h2>
+						
 						<div class="card">
 							<div class="card-body">
 								<img
@@ -297,3 +301,5 @@
 	}
 </script>
 {% endblock %}
+
+</html>

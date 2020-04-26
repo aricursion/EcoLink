@@ -47,7 +47,7 @@ form{
 {% block content %}
 
 <center><h1 class="title">EcoLink</h1></center>
-
+<div class="container">
 
 			<form action="{{ url_for("actionRegister") }}" method="post">
 			<div class="form-group">
@@ -80,7 +80,7 @@ form{
 			
 			<button type="submit" onclick="setVal(tags)" class="btn btn-thing">Submit</button>
 			</form>
-
+		</div>
 {% endblock %}
 
 {% block scripts %} 

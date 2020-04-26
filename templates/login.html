@@ -45,7 +45,7 @@ rel="stylesheet"
 {% block content %}
 
 <center><h1 class="title">EcoLink</h1></center>
-
+	<div class="container">
     <p class="lead">
 		<form action="{{ url_for("actionLogin") }}" method="post">
 		  <div class="form-group">
@@ -61,6 +61,6 @@ rel="stylesheet"
 		  <button type="submit" class="btn btn-thing">Submit</button>
 		</form>
 	</p>
-
+	</div>
 
 {% endblock %}
