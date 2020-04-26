@@ -7,8 +7,6 @@
 
 
 {% block content %}
-
-<div class="jumbotron">
     <h1>Register</h1>
     <p class="lead">
 		<form action="{{ url_for("actionRegister") }}" method="post">
@@ -35,20 +33,15 @@
 			<input type="input" name="bio" class="form-control" placeholder="Tell us a bit about yourself!">
 		  </div>
 		  <div class="form-group">
-			<label for="input">Add some tags that describe you, (Limit 5)</label>
-			<input id="tag-gen" class="form-control" name="skills" placeholder="Add tags that describe you!"/>
+			<label for="input">Add some tags that describe yourself</label>
+			<input id="tag-gen" class="form-control" name="skills" placeholder="Add tags that describe yourself!"/>
 			<div id="tags" class="row tags text-center" ></div>
 		  </div>
 		  
-		    
-		  
-		  
-
 		  <button type="submit" onclick="setVal(tags)" class="btn btn-primary">Submit</button>
 		</form>
 	</p>
     
-</div>
 
 {% endblock %}
 
