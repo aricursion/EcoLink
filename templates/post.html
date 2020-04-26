@@ -1,128 +1,129 @@
-{% extends "layout.html" %} {% block styles %}
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
-	rel="stylesheet"
-/>
+{% extends "layout.html" %}
+{% block styles %}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
-	rel="stylesheet"
-/>
-
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet" />
 <style>
 	body {
 		overflow-x: hidden;
 	}
 </style>
-{% endblock %} {% block content %}
+<style>
+	.title {
+		color: #b7deb2;
+		text-shadow: 1px solid black;
+		font-family: "Josefin Sans";
+		-webkit-text-stroke: 1px lightslategrey;
+		-webkit-text-fill-color: #b7deb2;
+		padding: 10px;
+	}
+
+	form {
+		background-color: white;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 1px 4px 0 rgba(0, 0, 0, 0.12), 0 2px 1px -1px rgba(0, 0, 0, 0.2);
+		border-radius: 5px;
+		padding: 10px;
+	}
+
+	.z-depth-5 {
+		margin-top: 10vh;
+		box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+		border-radius: 5px;
+		background-color: whitesmoke;
+	}
+</style>
+{% endblock %}
+{% block content %}
 <html>
-	<body>
-		<h1>Create Post</h1>
+
+<body>
+	<div class="z-depth-5 container">
+		<center><h1 class="title">Create Post</h1></center>
 		<form action="{{ url_for('actionPost') }}" method="post">
 			<div class="form-group">
 				<label for="exampleInputTitle">Post Title</label>
-				<input
-					type="input"
-					name="postTitle"
-					class="form-control"
-					placeholder="Enter a catchy title for your event or environmental flex!"
-				/>
+				<input type="input" name="postTitle" class="form-control"
+					placeholder="Enter a catchy title for your event or environmental flex!" />
 				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 			</div>
 
 			<div class="form-group">
 				<label for="exampleInputDescription">Description</label>
-				<input
-					type="input"
-					name="description"
-					class="form-control"
-					placeholder="Describe your event!"
-				/>
+				<input type="input" name="description" class="form-control" placeholder="Describe your event!" />
 			</div>
 
 			<div class="form-group">
 				<label for="exampleLocation">Location</label>
-				<input
-					type="input"
-					name="location"
-					class="form-control"
-					placeholder="Where will your event take place?"
-				/>
+				<input type="input" name="location" class="form-control"
+					placeholder="Where will your event take place?" />
 			</div>
 
 			<div class="form-group">
 				<label for="exampleImage">First Name</label>
-				<input
-					id="imgUpload"
-					type="file"
-					name="imageUpload"
-					accept="image/png, image/jpeg"
-					class="form-control"
-				/>
-            </div>
-            
-            <input
-					id="imgUploadHidden"
-					type="hidden"
-					name="image"
-					class="form-control"
-				/>
+				<input id="imgUpload" type="file" name="imageUpload" accept="image/png, image/jpeg"
+					class="form-control" />
+			</div>
+
+			<input id="imgUploadHidden" type="hidden" name="image" class="form-control" />
 
 			<button type="submit" onclick="uploadImg()" class="btn btn-primary">
 				Submit
 			</button>
 		</form>
-    </body>
-    <script src="/static/js/jquery.min.js"></script>
-	<script>
-		$("document").ready(function () {
-			$("input[type=file]").on("change", function () {
-				var $files = $(this).get(0).files;
+	</div>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+	$("document").ready(function () {
+		$("input[type=file]").on("change", function () {
+			var $files = $(this).get(0).files;
 
-				if ($files.length) {
-					// Reject big files
-					if ($files[0].size > $(this).data("max-size") * 1024) {
-						console.log("Please select a smaller file");
-						return false;
-					}
-
-					// Begin file upload
-					console.log("Uploading file to Imgur..");
-
-					// Replace ctrlq with your own API key
-					var apiUrl = "https://api.imgur.com/3/image";
-					var apiKey = "5a4b4cec840ebab";
-
-					var settings = {
-						async: false,
-						crossDomain: true,
-						processData: false,
-						contentType: false,
-						type: "POST",
-						url: apiUrl,
-						headers: {
-							Authorization: "Client-ID " + apiKey,
-							Accept: "application/json",
-						},
-						mimeType: "multipart/form-data",
-					};
-
-					var formData = new FormData();
-					formData.append("image", $files[0]);
-					settings.data = formData;
-
-					// Response contains stringified JSON
-					// Image URL available at response.data.link
-					$.ajax(settings).done(function (response) {
-                        console.log(response);
-                        resp = JSON.parse(response);
-                        console.log(String(resp.data.link));
-                        $('#imgUploadHidden').val(resp.data.link);
-					});
+			if ($files.length) {
+				// Reject big files
+				if ($files[0].size > $(this).data("max-size") * 1024) {
+					console.log("Please select a smaller file");
+					return false;
 				}
-			});
+
+				// Begin file upload
+				console.log("Uploading file to Imgur..");
+
+				// Replace ctrlq with your own API key
+				var apiUrl = "https://api.imgur.com/3/image";
+				var apiKey = "5a4b4cec840ebab";
+
+				var settings = {
+					async: false,
+					crossDomain: true,
+					processData: false,
+					contentType: false,
+					type: "POST",
+					url: apiUrl,
+					headers: {
+						Authorization: "Client-ID " + apiKey,
+						Accept: "application/json",
+					},
+					mimeType: "multipart/form-data",
+				};
+
+				var formData = new FormData();
+				formData.append("image", $files[0]);
+				settings.data = formData;
+
+				// Response contains stringified JSON
+				// Image URL available at response.data.link
+				$.ajax(settings).done(function (response) {
+					console.log(response);
+					resp = JSON.parse(response);
+					console.log(String(resp.data.link));
+					$('#imgUploadHidden').val(resp.data.link);
+				});
+			}
 		});
-	</script>
+	});
+</script>
+
 </html>
 
 {% endblock %}
