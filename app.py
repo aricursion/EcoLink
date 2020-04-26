@@ -25,8 +25,10 @@ def index():
 		data = db.child("users").child(uid).get()
 		bio = data.val()["bio"]
 		name = data.val()["firstname"] + " " + data.val()["lastname"]
+		edu = data.val()["education"]
+		loc = name = data.val()["location"]
 		avatar = "/static/avatar.png"
-		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar)
+		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar, loc=loc, edu=edu)
 
 	else:
 		print(0)
@@ -44,12 +46,14 @@ def actionRegister():
 	password = data["password"]
 	firstName = data["firstName"]
 	lastName = data["lastName"]
+	location = data["location"]
+	education = data["education"]
 	bio = data["bio"]
 	skills= data["skills"]
 	print(skills[:-1])
 	skills = skills[:-1].split(",")
 	print(skills)
-	createAccount(db, auth, email, password, firstName, lastName, bio, skills)
+	createAccount(db, auth, email, password, firstName, lastName, bio, education, location, skills)
 	return redirect("/")
 
 @app.route("/login")
