@@ -1,13 +1,7 @@
 {% extends "layout.html" %} {% block styles %}
-<link
-	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
-	rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
 
-<link
-	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
-	rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet" />
 <style>
 	/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -15,26 +9,31 @@
 		height: 700px;
 		width: 100%;
 	}
+
 	.map-header {
 		color: white;
 		font-family: "Bungee";
 		text-align: center;
 	}
+
 	/* Optional: Makes the sample page fill the window. */
 </style>
 {% endblock %} {% block content %}
 <html>
-	<head> </head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h1 class="map-header">map</h1>
-					<div id="map"></div>
-				</div>
+
+<head> </head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h1 class="map-header">map</h1>
+				<div id="map"></div>
 			</div>
 		</div>
-	</body>
+	</div>
+</body>
+
 </html>
 
 {% endblock %} {% block scripts %}
@@ -67,53 +66,65 @@
 	posts.on("value", gotData, errData);
 	var map;
 	function initMap() {
-		var options = {
-			zoom: 1,
-			center: { lat: -34.397, lng: 150.644 },
-		};
-		map = new google.maps.Map(document.getElementById("map"), options);
-    }
-    
-    function addMarker(coords, content, img){
-        var marker = new google.maps.Marker({
-          position:coords,
-          map:map,
-          //icon:props.iconImage
-        });
+		$.getJSON(
+			"https://maps.googleapis.com/maps/api/geocode/json?address=" +
+			"{{location}}" +
+			"&key=AIzaSyBBIqRakO_8TI1b6w7AzquUOECTafYjy9s",
+			function (data) {
+				var str_loc = data["results"][0]["formatted_address"];
+				console.log(str_loc)
+				lat_lang_loc = data["results"][0]["geometry"]["location"];
+				console.log(lat_lang_loc);
+				var options = {
+					zoom: 10,
+					center: { lat: lat_lang_loc.lat, lng: lat_lang_loc.lng },
+				};
+				map = new google.maps.Map(document.getElementById("map"), options);
+				//	addMarker(lat_lang_loc, "<h3>" + str_loc + "</h3>", "/static/plant_tiny.png")
+			}
+		);
+	}
 
-        // Check for customicon
-        if(img){
-          // Set icon image
-          marker.setIcon(img);
-        }
+	function addMarker(coords, content, img) {
+		var marker = new google.maps.Marker({
+			position: coords,
+			map: map,
+			//icon:props.iconImage
+		});
 
-        // Check content
-        if(content){
-          var infoWindow = new google.maps.InfoWindow({
-            content:content
-          });
+		// Check for customicon
+		if (img) {
+			// Set icon image
+			marker.setIcon(img);
+		}
 
-          marker.addListener('click', function(){
-            infoWindow.open(map, marker);
-          });
-        }
-      }
+		// Check content
+		if (content) {
+			var infoWindow = new google.maps.InfoWindow({
+				content: content
+			});
+
+			marker.addListener('click', function () {
+				infoWindow.open(map, marker);
+			});
+		}
+	}
 
 	function gotData(data) {
 		var post_json = data.val();
 		var keys = Object.keys(post_json);
 
 		for (var i = 0; i < keys.length; i++) {
-            var loc_standard = post_json[keys[i]]["location"];
-            var loc = post_json[keys[i]]["location"].replace(" ", "+");
+			var loc_standard = post_json[keys[i]]["location"];
+			var loc = post_json[keys[i]]["location"].replace(" ", "+");
 			$.getJSON(
 				"https://maps.googleapis.com/maps/api/geocode/json?address=" +
-					loc +
-					"&key=AIzaSyBBIqRakO_8TI1b6w7AzquUOECTafYjy9s",
+				loc +
+				"&key=AIzaSyBBIqRakO_8TI1b6w7AzquUOECTafYjy9s",
 				function (data) {
-                    var str_loc = data["results"][0]["formatted_address"];
-                    console.log(str_loc)
-                    lat_lang_loc = data["results"][0]["geometry"]["location"];
+					var str_loc = data["results"][0]["formatted_address"];
+					console.log(str_loc)
+					lat_lang_loc = data["results"][0]["geometry"]["location"];
 					console.log(lat_lang_loc);
 					addMarker(lat_lang_loc, "<h3>" + str_loc + "</h3>", "/static/plant_tiny.png")
 				}
@@ -126,10 +137,7 @@
 		console.log(err);
 	}
 </script>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBIqRakO_8TI1b6w7AzquUOECTafYjy9s&callback=initMap"
-	async
-	defer
-></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBIqRakO_8TI1b6w7AzquUOECTafYjy9s&callback=initMap" async
+	defer></script>
 
 {% endblock %}

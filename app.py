@@ -20,9 +20,12 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 	uids = [i.val()["uid"] for i in db.child("users").get().each()]
-	if request.cookies.get('uid') in uids:
+	uid = request.cookies.get('uid')
+	if uid in uids:
 		print(1)
-		return render_template("/landingpage.html")
+		name = db.child("users").child(uid).child("firstname").get().val() + " " + db.child("users").child(uid).child("lastname").get().val()
+		bio = db.child("users").child(uid).child("bio").get().val()
+		return render_template("/landingpage.html",name = name, bio = bio)
 	else:
 		print(0)
 		return render_template("/index.html")
@@ -118,7 +121,7 @@ def getcookie():
 
 @app.route("/map", methods=["GET"])
 def maps():
-	return render_template("/map.html")
+	return render_template("/map.html",location = request.args.get("location"))
 
 
 app.run()
