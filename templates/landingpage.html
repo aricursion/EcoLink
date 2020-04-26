@@ -51,7 +51,7 @@
     .you, .trending, .feed {
 		color:#b7deb2;
 		text-shadow:1px solid black;
-		font-family: "Bungee";
+		font-family: "Josefin Sans", sans-serif;;
 		-webkit-text-stroke: 1px lightslategrey;
     	-webkit-text-fill-color:#b7deb2;
 	}
@@ -94,8 +94,50 @@
 		margin-top:100px;
     }
 
+	a {
+		font-family: "Josefin Sans", sans-serif;
+		color: white;
+		text-decoration: underline;
+		font-size:32px;
+	}
+	nav{
+		width:100vw;
+		margin-left:0px;
+		margin:0px;
+		padding-top:3%;
+		height:150px;
+		display:block;
+		background-color: rgba(0,255,0,0.3);
+	}
+	.col-2dot4,
+	.col-sm-2dot4 {
+		position: relative;
+		width: 100%;
+		min-height: 1px;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+@media (min-width: 540px) {
+    .col-sm-2dot4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+	}
+	.col-sm-2dot4 > a {
+		margin-top:100px;
+	}
+} 
+@media (max-width: 540px) {
+    .col-sm-2dot4 > a {
+        display:none;
+    }
+} 
+
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"/>
 {% endblock %} {% block content %}
 <html>
 	<head>
@@ -201,7 +243,7 @@
 		<div class="container">
 			<div class="subcontainer">
 				<div class="row">
-					<div class="col-sm-3 z-depth-5">
+					<div class="col-sm-3">
 						<!-- <img
 							class="trending-logo"
 							src="../static/plant.png"
@@ -210,11 +252,11 @@
 						/> -->
 						<h2 class="trending">Trending</h2>
 					</div>
-					<div class="col-sm-6 z-depth-5" id = "feed_main">
+					<div class="col-sm-6" id = "feed_main">
                         <h2 class="feed">Feed</h2>
                         
 					</div>
-					<div class="col-sm-3 z-depth-5">
+					<div class="col-sm-3">
 						<h2 class="you">Profile</h2>
 						<div class="card">
 							<div class="card-body">
