@@ -14,19 +14,24 @@
 		overflow-x: hidden;
 		background-color: #ebf3fa;
     }
-    
+	
+	nav{
+		background-color:rgba(0,255,0,0.3);
+		height:150px;
+	}
+
 	.title {
 		font-family: "Bungee";
 		text-align: center;
-		background-color: rgba(0,255,0,0.3);
 		color: white;
-		margin: 0 -9999rem;
+		
 	}
 
-	h2 .header-text {
+	a, h2 .header-text {
 		font-family: "Josefin Sans";
 		text-align: center;
 		color: white;
+		text-decoration: underline;
 	}
 	
 	.trending-logo {
@@ -63,7 +68,31 @@
 	#logout:hover{
 		background-color:red;
 	}
-	
+	.col-2dot4,
+.col-sm-2dot4,
+.col-md-2dot4,
+.col-lg-2dot4,
+.col-xl-2dot4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+@media (min-width: 540px) {
+    .col-sm-2dot4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+		max-width: 20%;
+		margin-top:100px;
+    }
 
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -149,18 +178,22 @@
 		</script>
 	</head>
 	<body>
-		<a href="/logout"><span id="logout" class="badge badge-secondary" style="position:absolute;top:7px;right:10px;"><i class="material-icons">logout</i></span></a>
-
 		<nav>
 			<div class="row">
-				<div class="col-sm-4 dot4" style="text-align:center;">
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/profile">Login</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
 					<h2 class="header-text"><a href="/post">Post</a></h2>
 				</div>
-				<div class="col-sm-4 dot4">
+				<div class="col-sm-2dot4">
 					<h1 class="title">ECOLINK</h1>
 				</div>
-				<div class="col-sm-4 dot4" style="text-align:center;">
+				<div class="col-sm-2dot4" style="text-align:center;">
 					<h2 class="header-text"><a href="/profile">Profile</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/logout">Logout</a></h2>
 				</div>
 			</div>
 		</nav>
