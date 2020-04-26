@@ -14,6 +14,8 @@ auth = firebase.auth()
 def likePost(db, uid, post):
     try:
         likes = db.child("posts").child(post).child("likes").get().val()
+        if (uid in likes):
+            return False
         likes.append(uid)
 
         db.child("posts").child(post).update({"likes" : likes})
@@ -24,6 +26,8 @@ def likePost(db, uid, post):
 def confirmAttendance(db, uid, post):
     try:
         attends = db.child("posts").child(post).child("attendees").get().val()
+        if (uid in attends):
+            return False
         attends.append(uid)
 
         db.child("posts").child(post).update({"attendees" : attends})

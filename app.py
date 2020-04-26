@@ -27,6 +27,7 @@ def index():
 		name = data.val()["firstname"] + " " + data.val()["lastname"]
 		avatar = "/static/avatar.png"
 		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar)
+
 	else:
 		print(0)
 		return render_template("/index.html")
@@ -133,7 +134,7 @@ def getcookie():
 
 @app.route("/map", methods=["GET"])
 def maps():
-	return render_template("/map.html")
+	return render_template("/map.html",location = request.args.get("location"))
 
 
 app.run()

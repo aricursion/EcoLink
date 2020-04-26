@@ -66,10 +66,21 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 		<script>
-			
+			function handler(id){
+				$.post("/api/likePost",{"postid":id},function(data){
+					document.getElementById(id).disabled = true;
+					if (data == "success"){
+						alert("Liked post!")
+					}
+					else{
+						alert("Already liked post!")
+					}
+				})
+			}
+
+			var posts = [];
 			$.get("/api/followingPosts",function(data){
 				data = JSON.parse(data);
-				var posts = []
 				for(var i in data){
 					data[i]["id"] = i
 					posts.push(data[i])
@@ -83,8 +94,22 @@
 					}
 					return 0;
 				})
+				jar = document.cookie.split("; ")
+				// just in case
+				var uid = "";
+				for(var i in jar){
+					if (jar[i].indexOf("uid")!=-1){
+						uid = jar[i].substring(4)
+						break;
+					}
+				}
+				console.log(uid);
 				for(var i in posts){
 					var x = posts[i]
+					var disabled=""
+					if (x["likes"].find(x => x == uid)){
+						disabled = "disabled"
+					}
 					var template = `<div class="card">
 							<div class="card-body">
 								
@@ -100,19 +125,18 @@
 									${x.description}
                                 </p>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">${x.location}</li>
+									<a href="/map?location=${x.location}" class="list-group-item">${x.location}</a>
                                     <li class="list-group-item">Recent Likers</li>
                                   </ul>
                                 <a href="#!" class="card-link">${x.name}</a>
 								<a href="#!" class="card-link">Likes</a>
 								</br>
 								</br>
-								<button id="${x.id}" type="button" class="btn btn-danger">Like</button>
+								<button id="${x.id}" type="button" ${disabled} onclick="handler('${x.id}')" class="btn btn-danger">Like</button>
 							</div>
 						</div>
 						</br>`
 					document.getElementById("feed_main").innerHTML += template;
-					document.getElementById(x.id).onclick = ()=>{alert("test");}
 				}
 			})
 		</script>
@@ -148,11 +172,13 @@
 									height="auto"
 									style="border-radius:50%;"
 								/>
+
 								<h6 class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
 									{{ name }}
 								</h6>
 								<p class="card-text">
 									{{ bio }}
+
 								</p>
 								<a href="#!" class="card-link">Profile Page</a>
 								<a href="#!" class="card-link">Followers</a>
@@ -163,6 +189,17 @@
 			</div>
 		</div>
 	</body>
+
+
 </html>
 
+{% endblock %}
+{% block scripts %}
+<script>
+	console.log(posts)
+	for(var i in posts){
+		var x = posts[i]
+		console.log(x.id)
+	}
+</script>
 {% endblock %}
