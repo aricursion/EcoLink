@@ -55,6 +55,10 @@ def actionRegister():
 def login():
 	return render_template("/login.html")
 
+@app.route("/post")
+def post():
+	return render_template("/post.html")
+
 def setCookie(key, value):
 	resp = make_response("Setting cookie")
 	resp.set_cookie(key, value)
@@ -75,12 +79,13 @@ def actionLogin():
 def actionPost():
 	data = request.form
 	uid = request.cookies.get("uid")
-	title = data["title"]
+	title = data["postTitle"]
 	desc = data["description"]
 	img = data["image"]
 	loc = data["location"]
 	ts = int(time.time())
-	return createPost(db, uid, title, desc, img, loc, ts)
+	createPost(db, uid, title, desc, img, loc, ts)
+	return make_response(redirect("/"))
 
 @app.route("/api/deletePost", methods=["POST"])
 def actionDelete():
