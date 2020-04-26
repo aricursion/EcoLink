@@ -58,7 +58,7 @@ pyasn1-modules==0.2.8
 PyAudio==0.2.11
 pycodestyle==2.5.0
 pycparser==2.20
-pycryptodome==3.4.3
+pycryptodome==3.6.6
 pyelftools==0.26
 Pygments==2.6.1
 pylint==2.4.4
