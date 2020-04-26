@@ -17,7 +17,7 @@
 	.title {
 		font-family: "Bungee";
 		text-align: center;
-		background-color: rgba(0,255,0,0.3);
+		
 		color: white;
 		margin: 0 -9999rem;
 		-webkit-text-stroke: 1px lightslategrey;
@@ -57,9 +57,49 @@
 	#logout:hover{
 		background-color:red;
 	}
-
+	a {
+		font-family: "Josefin Sans", sans-serif;
+		color: white;
+		text-decoration: underline;
+		font-size:32px;
+	}
+	nav{
+		width:100vw;
+		margin-left:0px;
+		margin:0px;
+		padding:0px;
+		height:150px;
+		display:block;
+		background-color: rgba(0,255,0,0.3);
+	}
+	.col-2dot4,
+	.col-sm-2dot4 {
+		position: relative;
+		width: 100%;
+		min-height: 1px;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+@media (min-width: 540px) {
+    .col-sm-2dot4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+	}
+	.col-sm-2dot4 > a {
+		margin-top:100px;
+	}
+} 
+@media (max-width: 540px) {
+    .col-sm-2dot4 > a {
+        display:none;
+    }
+} 
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet"/>
 {% endblock %} {% block content %}
 <html>
 	<head>
@@ -141,11 +181,32 @@
 			})
 		</script>
 	</head>
-	<body>
-		<a href="/logout"><span id="logout" class="badge badge-secondary" style="position:absolute;top:7px;right:10px;"><i class="material-icons">logout</i></span></a>
+	
+		<nav>
+			<div class="row">
+				<div class="col-sm-2dot4" style="text-align:center;background-color:pink;">
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;background-color:teal;">
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="col-sm-2dot4">
+					<h1 class="title">ECOLINK</h1>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;background-color:pink;">
+					<a href="/logout">Logout</a>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;background-color:teal;">
+					<a href="/logout">Logout</a>
+				</div>
+			</div>
+		</nav>
+
 
 		
-		<h1 class="title">ECOLINK</h1>
+
+		
+		
 		<div class="container">
 			<div class="subcontainer">
 				<div class="row">
