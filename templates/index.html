@@ -16,7 +16,12 @@
 		font-family: "Josefin Sans", sans-serif;
 		color: white;
 	}
-	p {
+	.about {
+		padding-left: 10%;
+		padding-right: 10%;
+		text-align: center;
+		margin-top: 4%;
+		margin-bottom: 4%;
 		font-size: 32px;
 	}
 	/* .custom{
@@ -44,6 +49,7 @@ background-position: center;
 		position: relative;
 		text-align: center;
 		color: white;
+		margin-top: 10%;
 	}
 
 	.name {
@@ -52,7 +58,7 @@ background-position: center;
 		top: 70%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-size: 8em;
+		font-size: 5em;
 	}
 
 	a:link,
@@ -90,8 +96,8 @@ background-position: center;
 		<div class="container">
 			<div class="image-container">
 				<div class="row text-center align-middle plant-img">
-					<img src="../static/plant.png" height="25%" width="25%" />
-					<h1 class="name">ENVIROLINK</h1>
+					<img src="../static/plant.png" height="auto" width="20%" />
+					<h1 class="name">ECOLINK</h1>
 				</div>
 			</div>
 			<p class="about">
@@ -101,10 +107,10 @@ background-position: center;
 			</p>
 			<div class="row text-center">
 				<div class="col-md-6">
-					<a href="{{ url_for('login') }}"> Login </a>
+					<a href="{{ url_for('login') }}"> login </a>
 				</div>
 				<div class="col-md-6">
-					<a href="{{ url_for('register') }}"> Register </a>
+					<a href="{{ url_for('register') }}"> register </a>
 				</div>
 			</div>
 		</div>
