@@ -1,16 +1,26 @@
 {% extends "layout.html" %}
 
 {% block styles %}
+<link
+	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+	rel="stylesheet"
+/>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+	rel="stylesheet"
+/>
+
 <link rel="stylesheet" type="text/css" href="/static/css/tags.css" />
 <style>
 
 .title {
-		color:#b7deb2;
+		color:white;
 		text-shadow:1px solid black;
 		font-family: "Bungee";
-		-webkit-text-stroke: 1px lightslategrey;
-		-webkit-text-fill-color:#b7deb2;
+		-webkit-text-fill-color:white;
 		padding:10px;
+		margin-top: 5%;
 	}
 form{
 	background-color:white;
@@ -25,17 +35,20 @@ form{
 	border-radius:5px;
 	background-color:whitesmoke;
 }
+
+.btn-thing {
+		background-color: #b7deb2;
+	}
 </style>
 {% endblock %}
 
 
 
 {% block content %}
-	<div class="z-depth-5 container">
 
-		<center><h1 class="title">Register</h1></center>
-		
-		
+<center><h1 class="title">EcoLink</h1></center>
+<div class="container">
+
 			<form action="{{ url_for("actionRegister") }}" method="post">
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email address</label>
@@ -60,18 +73,14 @@ form{
 				<input type="input" name="bio" class="form-control" placeholder="Tell us a bit about yourself!">
 			</div>
 			<div class="form-group">
-				<label for="input">Add some tags that describe yourself</label>
-				<input id="tag-gen" class="form-control" name="skills" placeholder="Add tags that describe yourself!"/>
+				<label for="input">Tags to describe your profile</label>
+				<input id="tag-gen" class="form-control" name="skills" placeholder="Tags to describe your profile (delimeted by space)"/>
 				<div id="tags" class="row tags text-center" ></div>
 			</div>
 			
-			<button type="submit" onclick="setVal(tags)" class="btn btn-primary">Submit</button>
+			<button type="submit" onclick="setVal(tags)" class="btn btn-thing">Submit</button>
 			</form>
-		
-		
-	</div>
-    
-
+		</div>
 {% endblock %}
 
 {% block scripts %} 

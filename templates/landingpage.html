@@ -1,3 +1,4 @@
+<html style="background-color:white;">
 {% extends "layout.html" %} {% block styles %}
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
 
@@ -6,15 +7,33 @@
 <style>
 	body {
 		overflow-x: hidden;
+<<<<<<< HEAD
+=======
+		background-color: #ebf3fa;
+    }
+	
+	nav{
+		background-color:#b7deb2;
+		height:150px;
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
 	}
 
 	.title {
 		font-family: "Bungee";
 		text-align: center;
+<<<<<<< HEAD
 
+=======
 		color: white;
-		margin: 0 -9999rem;
-		-webkit-text-stroke: 1px lightslategrey;
+		
+	}
+
+	.header-text > a {
+		font-family: "Josefin Sans";
+		text-align: center;
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
+		color: white;
+		text-decoration: underline;
 	}
 
 	.trending-logo {
@@ -33,6 +52,7 @@
 
 	.card-link:hover {
 		color: purple;
+<<<<<<< HEAD
 	}
 
 	.you,
@@ -41,6 +61,13 @@
 		color: #b7deb2;
 		text-shadow: 1px solid black;
 		font-family: "Bungee";
+=======
+    }
+    .you, .trending, .feed {
+		color:#b7deb2;
+		text-shadow:1px solid #b7deb2;
+		font-family: "Josefin Sans", sans-serif;;
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
 		-webkit-text-stroke: 1px lightslategrey;
 		-webkit-text-fill-color: #b7deb2;
 	}
@@ -60,22 +87,49 @@
 	#logout:hover {
 		background-color: red;
 	}
+	.col-2dot4,
+.col-sm-2dot4,
+.col-md-2dot4,
+.col-lg-2dot4,
+.col-xl-2dot4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+@media (min-width: 540px) {
+    .col-sm-2dot4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+		max-width: 20%;
+		
+    }
 
 	a {
 		font-family: "Josefin Sans", sans-serif;
 		color: white;
 		text-decoration: underline;
-		font-size: 32px;
+		transition: 0.4s; 
 	}
-
-	nav {
-		width: 100vw;
-		margin-left: 0px;
-		margin: 0px;
-		padding: 0px;
-		height: 150px;
-		display: block;
-		background-color: rgba(0, 255, 0, 0.3);
+	a:hover{
+		color:limegreen;
+	}
+	nav{
+		width:100vw;
+		margin-left:0px;
+		margin:0px;
+		padding-top:3%;
+		height:150px;
+		display:block;
+		background-color: rgba(0,255,0,0.3);
 	}
 
 	.col-2dot4,
@@ -105,6 +159,16 @@
 			display: none;
 		}
 	}
+<<<<<<< HEAD
+=======
+} 
+@media (max-width: 540px) {
+    .col-sm-2dot4 > a {
+        display:none;
+    }
+} 
+
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
@@ -186,6 +250,7 @@
 							</div>
 						</div>
 						</br>`
+<<<<<<< HEAD
 				document.getElementById("feed_main").innerHTML += template;
 			}
 		})
@@ -217,15 +282,67 @@
 		<div class="row">
 			<div class="col-sm-3 z-depth-5">
 				<!-- <img
+=======
+					document.getElementById("feed_main").innerHTML += template;
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<nav>
+			<div class="row">
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/">home</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/post">post</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="margin-top:-3px;">
+					<h1 class="title">ECOLINK</h1>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/profile">profile</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/logout">logout</a></h2>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div class="subcontainer">
+				<div class="row">
+					<div class="col-sm-3">
+						<!-- <img
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
 							class="trending-logo"
 							src="../static/plant.png"
 							height="auto"
 							width="50%"
 						/> -->
+<<<<<<< HEAD
 				<h2 class="trending">Trending</h2>
 			</div>
 			<div class="col-sm-6 z-depth-5" id="feed_main">
 				<h2 class="feed">Feed</h2>
+=======
+						
+					</div>
+					<div class="col-sm-6" id = "feed_main">
+                        
+                        
+					</div>
+					<div class="col-sm-3">
+						
+						<div class="card">
+							<div class="card-body">
+								<img
+                                    src="{{avatar}}"
+                                    width="80%"
+									height="auto"
+									style="border-radius:50%;"
+								/>
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
 
 			</div>
 			<div class="col-sm-3 z-depth-5">
@@ -254,4 +371,19 @@
 
 </html>
 
+<<<<<<< HEAD
 {% endblock %}
+=======
+{% endblock %}
+{% block scripts %}
+<script>
+	console.log(posts)
+	for(var i in posts){
+		var x = posts[i]
+		console.log(x.id)
+	}
+</script>
+{% endblock %}
+
+</html>
+>>>>>>> a18c9d286fb43db43413c9ba8739a3c39dc12b41
