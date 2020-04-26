@@ -12,6 +12,7 @@
 <style>
 	body {
 		overflow-x: hidden;
+		background-color: #ebf3fa;
     }
     
 	.title {
@@ -20,7 +21,12 @@
 		
 		color: white;
 		margin: 0 -9999rem;
-		-webkit-text-stroke: 1px lightslategrey;
+	}
+
+	h2 .header-text {
+		font-family: "Josefin Sans";
+		text-align: center;
+		color: white;
 	}
 	
 	.trending-logo {
@@ -57,6 +63,7 @@
 	#logout:hover{
 		background-color:red;
 	}
+
 	a {
 		font-family: "Josefin Sans", sans-serif;
 		color: white;
@@ -96,6 +103,7 @@
         display:none;
     }
 } 
+
 </style>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet" />
@@ -203,9 +211,19 @@
 		</nav>
 
 
-		
-
-		
+		<nav>
+			<div class="row">
+				<div class="col-sm-4 dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/post">Post</a></h2>
+				</div>
+				<div class="col-sm-4 dot4">
+					<h1 class="title">ECOLINK</h1>
+				</div>
+				<div class="col-sm-4 dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/profile">Profile</a></h2>
+				</div>
+			</div>
+		</nav>
 		
 		<div class="container">
 			<div class="subcontainer">
