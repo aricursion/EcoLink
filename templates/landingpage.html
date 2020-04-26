@@ -48,47 +48,83 @@
 			color: #b7deb2;
 		}
 
-		.card-link:hover {
-			color: purple;
-		}
-		.you,
-		.trending,
-		.feed {
-			color: #b7deb2;
-			text-shadow: 1px solid #b7deb2;
-			font-family: "Josefin Sans", sans-serif;
-			-webkit-text-stroke: 1px lightslategrey;
-			-webkit-text-fill-color: #b7deb2;
-		}
-
-		.z-depth-5 {
-			box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
-				0 1px 7px 0 rgba(0, 0, 0, 0.12),
-				0 3px 1px -1px rgba(0, 0, 0, 0.2);
-			padding: 5px;
-
-			background-color: whitesmoke;
-		}
+	.z-depth-5 {
+	
+		
+	}
 
 		#logout {
 			transition: 0.4s ease;
 		}
 
-		#logout:hover {
-			background-color: red;
-		}
-		.col-2dot4,
-		.col-sm-2dot4,
-		.col-md-2dot4,
-		.col-lg-2dot4,
-		.col-xl-2dot4 {
-			position: relative;
-			width: 100%;
-			min-height: 1px;
-			padding-right: 15px;
-			padding-left: 15px;
-		}
-		.col-2dot4 {
+	#logout:hover {
+		background-color: red;
+	}
+	.col-2dot4,
+.col-sm-2dot4,
+.col-md-2dot4,
+.col-lg-2dot4,
+.col-xl-2dot4 {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.col-2dot4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+@media (min-width: 540px) {
+    .col-sm-2dot4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+		max-width: 20%;
+		
+    }
+
+	a {
+		font-family: "Josefin Sans", sans-serif;
+		color: limegreen;
+		text-decoration: underline;
+		transition: 0.4s; 
+	}
+	a:hover{
+		color:limegreen;
+	}
+	nav{
+		width:100vw;
+		margin-left:0px;
+		margin:0px;
+		padding-top:3%;
+
+		display:block;
+		background-color: rgba(0,255,0,0.3);
+	}
+	
+	@media (min-width: 540px) {
+		#navbar{height:150px;}
+		
+	}
+	@media (max-width: 540px) {
+		#navbar{min-height:400px;}
+		
+	}
+
+	.col-2dot4,
+	.col-sm-2dot4 {
+		position: relative;
+		width: 100%;
+		min-height: 1px;
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+
+	@media (min-width: 540px) {
+		.col-sm-2dot4 {
 			-webkit-box-flex: 0;
 			-ms-flex: 0 0 20%;
 			flex: 0 0 20%;
@@ -244,98 +280,72 @@
 								<button id="${x.id}" type="button" ${disabled} onclick="handler('${x.id}')" class="btn btn-danger">Like</button>
 							</div>
 						</div>
-						</br>`;
-						document.getElementById(
-							"feed_main"
-						).innerHTML += template;
-					}
-				});
-			</script>
-		</head>
-		<body>
-			<nav>
-				<div class="row">
-					<div class="col-sm-2dot4" style="text-align: center;">
-						<h2 class="header-text"><a href="/">home</a></h2>
-					</div>
-					<div class="col-sm-2dot4" style="text-align: center;">
-						<h2 class="header-text"><a href="/post">post</a></h2>
-					</div>
-					<div class="col-sm-2dot4" style="margin-top: -3px;">
-						<h1 class="title">ECOLINK</h1>
-					</div>
-					<div class="col-sm-2dot4" style="text-align: center;"></div>
-					<div class="col-sm-2dot4" style="text-align: center;">
-						<h2 class="header-text">
-							<a href="/logout">logout</a>
-						</h2>
-					</div>
+						</br>`
+					document.getElementById("feed_main").innerHTML += template;
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<nav id="navbar">
+			<div class="row">
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/">home</a></h2>
 				</div>
-			</nav>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/post">post</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="margin-top:-3px;">
+					<h1 class="title">ECOLINK</h1>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="mailto:payton.miller404@gmail.com">contact</a></h2>
+				</div>
+				<div class="col-sm-2dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/logout">logout</a></h2>
+				</div>
+			</div>
+		</nav>
+		
+		<div class="container">
+			<div class="subcontainer">
+				<div class="row">
+					<div class="col-sm-9" id = "feed_main">
 
-			<div class="container">
-				<div class="subcontainer">
-					<div class="row">
-						<div class="col-sm-3">
-							<!-- <img
-							class="trending-logo"
-							src="../static/plant.png"
-							height="auto"
-							width="50%"
-						/> -->
-						</div>
-						<div class="col-sm-6" id="feed_main"></div>
+					</div>
+				<div class="col-sm-3 z-depth-5" >
+				
+				<div class="card">
+					<div class="card-body">
+						<img src="{{avatar}}" width="80%" height="auto" style="border-radius:50%;" />
+
+						<h6 id = "name" class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
+							{{ name }}
+						</h6>
+						<p id="bio" class="card-text">
+							{{ bio }}
+						</p>
 						<!--
-					<div class="col-sm-3">
+						<p id="edu" class="card-text">
+							{{ bio }}
+
+						</p>
+						<p id="location" class="card-text">
+							{{ bio }}
+
+						</p>
+						<p id="following" class="card-text">
+							{{ bio }}
+						-->
 						
-						<div class="card">
-							<div class="card-body">
-								<img
-                                    src="{{avatar}}"
-                                    width="80%"
-									height="auto"
-									style="border-radius:50%;"
-								/>
-
-			</div>-->
-						<div class="col-sm-3 z-depth-5">
-							<h2 class="you">Profile</h2>
-							<div class="card">
-								<div class="card-body">
-									<img
-										src="{{avatar}}"
-										width="80%"
-										height="auto"
-										style="border-radius: 50%;"
-									/>
-
-									<h6
-										id="name"
-										class="card-subtitle mb-4 text-muted"
-										style="
-											margin-top: 1rem;
-											font-size: 22px;
-										"
-									>
-										{{ name }}
-									</h6>
-									<p id="bio" class="card-text">
-										{{ bio }}
-									</p>
-									<p id="edu" class="card-text">
-										{{ edu }}
-									</p>
-									<p id="location" class="card-text">
-										{{loc }}
-									</p>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
-		</body>
-	</html>
+
+		</div>
+	</div>
+</div>
+</body>
 
 	{% endblock %} {% block scripts %} {% endblock %}
 </html>
