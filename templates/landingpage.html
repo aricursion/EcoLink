@@ -13,17 +13,22 @@
 	body {
 		overflow-x: hidden;
 		background-color: #ebf3fa;
-	}
-
+    }
+    
 	.title {
 		font-family: "Bungee";
 		text-align: center;
-		background-color: rgba(0, 255, 0, 0.3);
+		background-color: rgba(0,255,0,0.3);
 		color: white;
 		margin: 0 -9999rem;
-		-webkit-text-stroke: 1px lightslategrey;
 	}
 
+	h2 .header-text {
+		font-family: "Josefin Sans";
+		text-align: center;
+		color: white;
+	}
+	
 	.trending-logo {
 		text-align: center;
 		margin-top: 5%;
@@ -37,85 +42,80 @@
 	}
 	.card-link:hover {
 		color: purple;
-	}
-	.you,
-	.trending,
-	.feed {
-		color: #b7deb2;
-		text-shadow: 1px solid black;
+    }
+    .you, .trending, .feed {
+		color:#b7deb2;
+		text-shadow:1px solid black;
 		font-family: "Bungee";
 		-webkit-text-stroke: 1px lightslategrey;
-		-webkit-text-fill-color: #b7deb2;
+    	-webkit-text-fill-color:#b7deb2;
 	}
 	.z-depth-5 {
-		box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14),
-			0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
-		padding: 5px;
+		
+		box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+		padding:5px;
+		
+		background-color:whitesmoke;
+	}
+	#logout{
+		transition:0.4s ease;
+	}
+	#logout:hover{
+		background-color:red;
+	}
+	
 
-		background-color: whitesmoke;
-	}
-	#logout {
-		transition: 0.4s ease;
-	}
-	#logout:hover {
-		background-color: red;
-	}
 </style>
-<link
-	href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock %} {% block content %}
 <html>
 	<head>
-		<script
-			src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
-			type="text/javascript"
-		></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 		<script>
-			function handler(id) {
-				$.post("/api/likePost", { postid: id }, function (data) {
+			function handler(id){
+				$.post("/api/likePost",{"postid":id},function(data){
 					document.getElementById(id).disabled = true;
-					if (data == "success") {
-						alert("Liked post!");
-					} else {
-						alert("Already liked post!");
+					if (data == "success"){
+						alert("Liked post!")
 					}
-				});
+					else{
+						alert("Already liked post!")
+					}
+				})
 			}
 
 			var posts = [];
-			$.get("/api/followingPosts", function (data) {
+			$.get("/api/followingPosts",function(data){
 				data = JSON.parse(data);
-				for (var i in data) {
-					data[i]["id"] = i;
-					posts.push(data[i]);
+				for(var i in data){
+					data[i]["id"] = i
+					posts.push(data[i])
 				}
-				posts.sort((a, b) => {
-					if (a.timestamp < b.timestamp) {
+				posts.sort((a,b) => {
+					if (a.timestamp < b.timestamp){
 						return 1;
 					}
-					if (a.timestamp > b.timestamp) {
-						return -1;
+					if (a.timestamp > b.timestamp){
+						return -1
 					}
 					return 0;
-				});
-				jar = document.cookie.split("; ");
+				})
+				jar = document.cookie.split("; ")
 				// just in case
 				var uid = "";
-				for (var i in jar) {
-					if (jar[i].indexOf("uid") != -1) {
-						uid = jar[i].substring(4);
+				for(var i in jar){
+					if (jar[i].indexOf("uid")!=-1){
+						uid = jar[i].substring(4)
 						break;
 					}
 				}
 				console.log(uid);
-				for (var i in posts) {
-					var x = posts[i];
-					var disabled = "";
-					if (x["likes"].find((x) => x == uid)) {
-						disabled = "disabled";
+				for(var i in posts){
+					var x = posts[i]
+					var disabled=""
+					if (x["likes"].find(x => x == uid)){
+						disabled = "disabled"
 					}
 					var template = `<div class="card">
 							<div class="card-body">
@@ -142,23 +142,29 @@
 								<button id="${x.id}" type="button" ${disabled} onclick="handler('${x.id}')" class="btn btn-danger">Like</button>
 							</div>
 						</div>
-						</br>`;
+						</br>`
 					document.getElementById("feed_main").innerHTML += template;
 				}
-			});
+			})
 		</script>
 	</head>
 	<body>
-		<a href="/logout"
-			><span
-				id="logout"
-				class="badge badge-secondary"
-				style="position: absolute; top: 7px; right: 10px;"
-				><i class="material-icons">logout</i></span
-			></a
-		>
+		<a href="/logout"><span id="logout" class="badge badge-secondary" style="position:absolute;top:7px;right:10px;"><i class="material-icons">logout</i></span></a>
 
-		<h1 class="title">ECOLINK</h1>
+		<nav>
+			<div class="row">
+				<div class="col-sm-4 dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/post">Post</a></h2>
+				</div>
+				<div class="col-sm-4 dot4">
+					<h1 class="title">ECOLINK</h1>
+				</div>
+				<div class="col-sm-4 dot4" style="text-align:center;">
+					<h2 class="header-text"><a href="/profile">Profile</a></h2>
+				</div>
+			</div>
+		</nav>
+		
 		<div class="container">
 			<div class="subcontainer">
 				<div class="row">
@@ -171,28 +177,27 @@
 						/> -->
 						<h2 class="trending">Trending</h2>
 					</div>
-					<div class="col-sm-6 z-depth-5" id="feed_main">
-						<h2 class="feed">Feed</h2>
+					<div class="col-sm-6 z-depth-5" id = "feed_main">
+                        <h2 class="feed">Feed</h2>
+                        
 					</div>
 					<div class="col-sm-3 z-depth-5">
 						<h2 class="you">Profile</h2>
 						<div class="card">
 							<div class="card-body">
 								<img
-									src="{{avatar}}"
-									width="80%"
+                                    src="{{avatar}}"
+                                    width="80%"
 									height="auto"
-									style="border-radius: 50%;"
+									style="border-radius:50%;"
 								/>
 
-								<h6
-									class="card-subtitle mb-4 text-muted"
-									style="margin-top: 1rem; font-size: 22px;"
-								>
+								<h6 class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
 									{{ name }}
 								</h6>
 								<p class="card-text">
 									{{ bio }}
+
 								</p>
 								<a href="#!" class="card-link">Profile Page</a>
 								<a href="#!" class="card-link">Followers</a>
@@ -203,14 +208,17 @@
 			</div>
 		</div>
 	</body>
+
+
 </html>
 
-{% endblock %} {% block scripts %}
+{% endblock %}
+{% block scripts %}
 <script>
-	console.log(posts);
-	for (var i in posts) {
-		var x = posts[i];
-		console.log(x.id);
+	console.log(posts)
+	for(var i in posts){
+		var x = posts[i]
+		console.log(x.id)
 	}
 </script>
 {% endblock %}
