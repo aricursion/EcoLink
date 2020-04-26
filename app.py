@@ -116,6 +116,12 @@ def getFollowingPosts():
 	ans = fetchFollowingPost(db, uid)
 	return json.dumps(ans)
 
+@app.route("/logout")
+def logout():
+	resp = make_response(redirect("/"))
+	resp.set_cookie('uid', '', expires=0)
+	return resp
+
 @app.route("/get")
 def getcookie():
 	return ""

@@ -38,7 +38,6 @@
 		color: purple;
     }
     .you, .trending, .feed {
-		
 		color:#b7deb2;
 		text-shadow:1px solid black;
 		font-family: "Bungee";
@@ -52,7 +51,15 @@
 		
 		background-color:whitesmoke;
 	}
+	#logout{
+		transition:0.4s ease;
+	}
+	#logout:hover{
+		background-color:red;
+	}
+
 </style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% endblock %} {% block content %}
 <html>
 	<head>
@@ -111,6 +118,9 @@
 		</script>
 	</head>
 	<body>
+		<a href="/logout"><span id="logout" class="badge badge-secondary" style="position:absolute;top:7px;right:10px;"><i class="material-icons">logout</i></span></a>
+
+		
 		<h1 class="title">ECOLINK</h1>
 		<div class="container">
 			<div class="subcontainer">
