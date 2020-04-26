@@ -77,7 +77,7 @@ def actionPost():
 	uid = request.cookies.get("uid")
 	title = data["postTitle"]
 	desc = data["description"]
-	img = "aaa"
+	img = data["image"]
 	loc = data["location"]
 	ts = int(time.time())
 	createPost(db, uid, title, desc, img, loc, ts)

@@ -18,7 +18,7 @@
 <html>
 	<body>
 		<h1>Create Post</h1>
-		<form action="{{ url_for('actionPost') }}" method="post" enctype=multipart/form-data>
+		<form action="{{ url_for('actionPost') }}" method="post">
 			<div class="form-group">
 				<label for="exampleInputTitle">Post Title</label>
 				<input
@@ -55,44 +55,73 @@
 				<input
 					id="imgUpload"
 					type="file"
-					name="image"
-					accept="image/png, image/jpg"
+					name="imageUpload"
+					accept="image/png, image/jpeg"
 					class="form-control"
 				/>
-			</div>
+            </div>
+            
+            <input
+					id="imgUploadHidden"
+					type="hidden"
+					name="image"
+					class="form-control"
+				/>
 
 			<button type="submit" onclick="uploadImg()" class="btn btn-primary">
 				Submit
 			</button>
 		</form>
-	</body>
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase.js"></script>
-	<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
+    </body>
+    <script src="/static/js/jquery.min.js"></script>
 	<script>
-		// Your web app's Firebase configuration
-		var firebaseConfig = {
-			apiKey: "AIzaSyBCxeL0BVpRe6u5BuZxThcyoZaBiNZ8DB8",
-			authDomain: "earthxhack2020.firebaseapp.com",
-			databaseURL: "https://earthxhack2020.firebaseio.com",
-			projectId: "earthxhack2020",
-			storageBucket: "earthxhack2020.appspot.com",
-			messagingSenderId: "121113223206",
-			appId: "1:121113223206:web:0528e0b1b4fe72045a86e7",
-			measurementId: "G-9QMYZLW2D3",
-		};
-		// Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        let storage = firebase.storage()
-        let fileUpload = document.getElementById("imgUpload");
-        function uploadImg() {
-            let image = fileUpload.files[0];
-            console.log(image)
-            let storageRef = storage.ref("images/" +"AAA")
-            storageRef.put(image)
-        }
+		$("document").ready(function () {
+			$("input[type=file]").on("change", function () {
+				var $files = $(this).get(0).files;
 
+				if ($files.length) {
+					// Reject big files
+					if ($files[0].size > $(this).data("max-size") * 1024) {
+						console.log("Please select a smaller file");
+						return false;
+					}
+
+					// Begin file upload
+					console.log("Uploading file to Imgur..");
+
+					// Replace ctrlq with your own API key
+					var apiUrl = "https://api.imgur.com/3/image";
+					var apiKey = "5a4b4cec840ebab";
+
+					var settings = {
+						async: false,
+						crossDomain: true,
+						processData: false,
+						contentType: false,
+						type: "POST",
+						url: apiUrl,
+						headers: {
+							Authorization: "Client-ID " + apiKey,
+							Accept: "application/json",
+						},
+						mimeType: "multipart/form-data",
+					};
+
+					var formData = new FormData();
+					formData.append("image", $files[0]);
+					settings.data = formData;
+
+					// Response contains stringified JSON
+					// Image URL available at response.data.link
+					$.ajax(settings).done(function (response) {
+                        console.log(response);
+                        resp = JSON.parse(response);
+                        console.log(String(resp.data.link));
+                        $('#imgUploadHidden').val(resp.data.link);
+					});
+				}
+			});
+		});
 	</script>
 </html>
 
