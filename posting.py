@@ -57,7 +57,7 @@ def createPost(db, uid, title, desc, img, loc, ts):
         name = db.child("posts").push(data)["name"]
         pids = db.child("users").child(uid).child("postids").get().val()
         pids.append(name)
-        db.child("users").child(uid).update({"postids" : pids})
+        db.child("posts").child(uid).update({"postids" : pids})
 
         return name
     except:

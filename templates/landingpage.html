@@ -247,7 +247,6 @@
 					<h1 class="title">ECOLINK</h1>
 				</div>
 				<div class="col-sm-2dot4" style="text-align:center;">
-					<h2 class="header-text"><a href="/profile">profile</a></h2>
 				</div>
 				<div class="col-sm-2dot4" style="text-align:center;">
 					<h2 class="header-text"><a href="/logout">logout</a></h2>
@@ -290,15 +289,25 @@
 					<div class="card-body">
 						<img src="{{avatar}}" width="80%" height="auto" style="border-radius:50%;" />
 
-						<h6 class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
+						<h6 id = "name" class="card-subtitle mb-4 text-muted" style="margin-top:1rem;font-size:22px;">
 							{{ name }}
 						</h6>
-						<p class="card-text">
+						<p id="bio" class="card-text">
 							{{ bio }}
 
 						</p>
-						<a href="#!" class="card-link">Profile Page</a>
-						<a href="#!" class="card-link">Followers</a>
+						<p id="edu" class="card-text">
+							{{ bio }}
+
+						</p>
+						<p id="location" class="card-text">
+							{{ bio }}
+
+						</p>
+						<p id="following" class="card-text">
+							{{ bio }}
+
+						</p>
 					</div>
 				</div>
 			</div>
@@ -312,13 +321,7 @@
 
 {% endblock %}
 {% block scripts %}
-<script>
-	console.log(posts)
-	for(var i in posts){
-		var x = posts[i]
-		console.log(x.id)
-	}
-</script>
+
 {% endblock %}
 
 </html>
