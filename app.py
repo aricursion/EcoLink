@@ -21,8 +21,12 @@ app = Flask(__name__)
 def index():
 	uids = [i.val()["uid"] for i in db.child("users").get().each()]
 	if request.cookies.get('uid') in uids:
-		print(1)
-		return render_template("/landingpage.html")
+		uid = request.cookies.get('uid')
+		data = db.child("users").child(uid).get()
+		bio = data.val()["bio"]
+		name = data.val()["firstname"] + " " + data.val()["lastname"]
+		avatar = "/static/avatar.png"
+		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar)
 	else:
 		print(0)
 		return render_template("/index.html")
