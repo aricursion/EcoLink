@@ -1,0 +1,99 @@
+{% extends "layout.html" %} {% block styles %}
+<link
+	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+	rel="stylesheet"
+/>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+	rel="stylesheet"
+/>
+
+<style>
+	body {
+		overflow-x: hidden;
+	}
+</style>
+{% endblock %} {% block content %}
+<html>
+	<body>
+		<h1>Create Post</h1>
+		<form action="{{ url_for('actionPost') }}" method="post" enctype=multipart/form-data>
+			<div class="form-group">
+				<label for="exampleInputTitle">Post Title</label>
+				<input
+					type="input"
+					name="postTitle"
+					class="form-control"
+					placeholder="Enter a catchy title for your event or environmental flex!"
+				/>
+				<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputDescription">Description</label>
+				<input
+					type="input"
+					name="description"
+					class="form-control"
+					placeholder="Describe your event!"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleLocation">Location</label>
+				<input
+					type="input"
+					name="location"
+					class="form-control"
+					placeholder="Where will your event take place?"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleImage">First Name</label>
+				<input
+					id="imgUpload"
+					type="file"
+					name="image"
+					accept="image/png, image/jpg"
+					class="form-control"
+				/>
+			</div>
+
+			<button type="submit" onclick="uploadImg()" class="btn btn-primary">
+				Submit
+			</button>
+		</form>
+	</body>
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase.js"></script>
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyBCxeL0BVpRe6u5BuZxThcyoZaBiNZ8DB8",
+			authDomain: "earthxhack2020.firebaseapp.com",
+			databaseURL: "https://earthxhack2020.firebaseio.com",
+			projectId: "earthxhack2020",
+			storageBucket: "earthxhack2020.appspot.com",
+			messagingSenderId: "121113223206",
+			appId: "1:121113223206:web:0528e0b1b4fe72045a86e7",
+			measurementId: "G-9QMYZLW2D3",
+		};
+		// Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        let storage = firebase.storage()
+        let fileUpload = document.getElementById("imgUpload");
+        function uploadImg() {
+            let image = fileUpload.files[0];
+            console.log(image)
+            let storageRef = storage.ref("images/" +"AAA")
+            storageRef.put(image)
+        }
+
+	</script>
+</html>
+
+{% endblock %}
