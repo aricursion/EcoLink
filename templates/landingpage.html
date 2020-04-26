@@ -1,0 +1,120 @@
+{% extends "layout.html" %} {% block styles %}
+<link
+	href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap"
+	rel="stylesheet"
+/>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Bungee&display=swap"
+	rel="stylesheet"
+/>
+
+<style>
+	body {
+		overflow-x: hidden;
+    }
+    
+	.title {
+		font-family: "Bungee";
+		text-align: center;
+		background-color: green;
+		color: white;
+		margin: 0 -9999rem;
+	}
+	.trending {
+		margin-top: 3%;
+		color: white;
+		font-family: "Bungee";
+	}
+	.trending-logo {
+		text-align: center;
+		margin-top: 5%;
+	}
+	.subcontainer {
+		margin-top: 4%;
+		text-align: center;
+	}
+	.feed {
+		color: white;
+		font-family: "Bungee";
+	}
+	.card-link {
+		color: #b7deb2;
+	}
+	.card-link:hover {
+		color: purple;
+    }
+    .you {
+        color: white;
+		font-family: "Bungee";
+    }
+</style>
+{% endblock %} {% block content %}
+<html>
+	<head> </head>
+	<body>
+		<h1 class="title">ECOLINK</h1>
+		<div class="container">
+			<div class="subcontainer">
+				<div class="row">
+					<div class="col-sm-3">
+						<!-- <img
+							class="trending-logo"
+							src="../static/plant.png"
+							height="auto"
+							width="50%"
+						/> -->
+						<h2 class="trending">Trending</h2>
+					</div>
+					<div class="col-sm-6">
+                        <h2 class="feed">Feed</h2>
+                        <div class="card">
+							<div class="card-body">
+								<img
+                                    src="https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-518740741.jpg"
+                                    class="card-img-top"
+                                    width="100%"
+                                    height="auto"
+                                    alt="Card image cap"
+								/>
+								<h5 class="card-title">POST TITLE</h5>
+								<p class="card-text">
+									Description
+                                </p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Location</li>
+                                    <li class="list-group-item">Recent Likers</li>
+                                    <li class="list-group-item">Something Else IDK</li>
+                                  </ul>
+                                <a href="#!" class="card-link">Poster Name</a>
+                                <a href="#!" class="card-link">Likes</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<h2 class="you">Profile</h2>
+						<div class="card">
+							<div class="card-body">
+								<img
+                                    src="https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-260nw-518740741.jpg"
+                                    width="80%"
+                                    height="auto"
+								/>
+								<h6 class="card-subtitle mb-4 text-muted">
+									firstname lastname
+								</h6>
+								<p class="card-text">
+									BIO BIO BIO
+								</p>
+								<a href="#!" class="card-link">Profile Page</a>
+								<a href="#!" class="card-link">Followers</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+{% endblock %}

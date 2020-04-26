@@ -1,0 +1,60 @@
+    @keyframes yeet {
+      0% {
+          opacity: 1;
+          transform: translateY(0);
+		  
+      }
+	  5%{
+		  background-color:#dc3545;
+	  }
+      15% {
+          
+      }
+      70% {
+		  width:auto;
+          opacity: 0;
+      }
+	  100%{
+		  width:0px;
+		  margin-left:-1px;
+		  padding:0px;
+	  }
+    }
+	
+    @keyframes opacity {
+      0% {
+          opacity: 0;
+          transform: translateY(20px);
+      }
+      70% {
+
+          transform: translateY(-2px);
+      }
+      100% {
+          opacity: 1;
+          transform: translateY(0);
+      }
+    }
+    .yeet, .yeet > span{
+      opacity:0;
+      animation: yeet 0.3s ease-in;
+    }
+
+    .tag{
+      margin:2px;
+      animation: opacity 0.4s ease-in;
+      opacity:1;
+    }
+
+    #tags{
+	  background-color:pink;
+	  min-height:36px;
+	  transition: height 0.3s;
+	  margin-top:1em;
+	  margin-left:1px;
+	  margin-right:1px;
+    }
+	.btn{
+	  height:auto;
+	  transition: margin-top 0.3s;
+	}
