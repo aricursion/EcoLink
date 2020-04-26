@@ -31,7 +31,7 @@ def confirmAttendance(db, uid, post):
     except:
         return False
 
-def createPost(db, uid, desc, img, loc, ts):
+def createPost(db, uid, title, desc, img, loc, ts):
     try:
         user = "{0} {1}".format(
             db.child("users").child(uid).child("firstname").get().val(),
@@ -46,7 +46,8 @@ def createPost(db, uid, desc, img, loc, ts):
             "likes" : [uid], 
             "location" : loc, 
             "name" :user, 
-            "timestamp" : ts
+            "timestamp" : ts,
+            "title" : title
         }
         
         name = db.child("posts").push(data)["name"]

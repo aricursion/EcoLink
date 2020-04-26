@@ -71,11 +71,12 @@ def actionLogin():
 def actionPost():
 	data = request.form
 	uid = request.cookies.get("uid")
+	title = data["title"]
 	desc = data["description"]
 	img = data["image"]
 	loc = data["location"]
 	ts = int(time.time())
-	return createPost(db, uid, desc, img, loc, ts)
+	return createPost(db, uid, title, desc, img, loc, ts)
 
 @app.route("/api/deletePost", methods=["POST"])
 def actionDelete():
