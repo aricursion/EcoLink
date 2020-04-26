@@ -126,4 +126,9 @@ def logout():
 def getcookie():
 	return ""
 
+@app.route("/map", methods=["GET"])
+def maps():
+	return render_template("/map.html")
+
+
 app.run()
