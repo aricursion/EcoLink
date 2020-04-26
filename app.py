@@ -26,7 +26,7 @@ def index():
 		bio = data.val()["bio"]
 		name = data.val()["firstname"] + " " + data.val()["lastname"]
 		edu = data.val()["education"]
-		loc = name = data.val()["location"]
+		loc = data.val()["location"]
 		avatar = "/static/avatar.png"
 		return render_template("/landingpage.html", bio=bio, name=name, avatar=avatar, loc=loc, edu=edu)
 
