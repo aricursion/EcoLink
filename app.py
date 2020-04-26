@@ -37,6 +37,10 @@ def index():
 def register():
 	return render_template("/register.html")
 
+@app.route("/profile")
+def profile():
+	return render_template("/profile.html")
+
 @app.route('/api/register', methods=["POST"])
 def actionRegister():
 	data = request.form
@@ -45,11 +49,13 @@ def actionRegister():
 	firstName = data["firstName"]
 	lastName = data["lastName"]
 	bio = data["bio"]
+	location = data["location"]
+	education = data["education"]
 	skills= data["skills"]
 	print(skills[:-1])
 	skills = skills[:-1].split(",")
 	print(skills)
-	createAccount(db, auth, email, password, firstName, lastName, bio, skills)
+	createAccount(db, auth, email, password, firstName, lastName, location, education, bio, skills)
 	return redirect("/")
 
 @app.route("/login")

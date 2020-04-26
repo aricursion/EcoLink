@@ -11,7 +11,7 @@ import json
 # auth = firebase.auth()
 
 
-def createAccount(db, auth, email, password, firstname, lastname, bio, skills):
+def createAccount(db, auth, email, password, firstname, lastname, bio, location, education, skills):
 	# email = input("email: ")
 	# password = getpass("pass: ")
 	# firstname = input("first: ")
@@ -27,6 +27,8 @@ def createAccount(db, auth, email, password, firstname, lastname, bio, skills):
 		"firstname": firstname,
 		"lastname": lastname,
 		"bio": bio,
+		"education":education,
+		"location": location,
 		"postids": [0],  # array of post ids
 		"skills": skills,
 		"following": ["{}".format(uid)]
