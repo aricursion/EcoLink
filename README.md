@@ -4,7 +4,7 @@ Our submission to the EarthXHack 2020 Hackathon.
 
 # Developers
 
-* [Zach Battleman](https://github.com/BlackCoffee77)
+* [Zach Battleman](https://github.com/Axolotl163)
 * [Maheen Hussain](https://github.com/VariableV)
 * [Payton Miller](https://github.com/naivros)
 * Anastasiia Gorobets
