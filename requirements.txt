@@ -1,5 +1,5 @@
 Flask==1.1.2
 gunicorn==20.0.4
-Jinja2==2.11.2
+Jinja2==2.11.3
 Pyrebase==3.0.27
 virtualenv==20.0.18
